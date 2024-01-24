@@ -1,0 +1,54 @@
+Simple Version
+--------------
+
+def LogEq(a, xList):
+	xinfList = []
+	for x in xList:
+		xn = x
+		for n in range(1000):
+			xn = a * xn *(1-xn)
+			#insert if to get only the upper half
+		    xinfList.append(xn)
+	return xinfList	
+	
+	
+aListLen = 100
+xListLen 100
+
+aList = np.linspace(0.0, 4, aListLen)
+xList = np.linspace(0.0, 1, xListLen)
+
+for a in aList:
+	xinfList = LogEq(a, xList)
+	
+	... plot xinfList
+	
+	
+Meshgrid version
+----------------
+aListLen = 5
+xListLen = 5
+
+aList = np.linspace(0.0, 4, aListLen)
+xList = np.linspace(0.0, 1, xListLen)
+
+A, X = np.meshgrid(aList, xList)
+
+print(A)
+print(X)
+
+def LogEq(a, x):
+	# make 1000 iterations
+	... x = a * x * (1 - x)
+	return x
+
+
+feigenbaum = LogEq(A, X)
+print(feigenbaum)
+
+nplot = 500  # do not plot the initial transition
+
+for i in range(len(aList)):
+    ax.scatter(aList[i] * np.ones_like(feigenbaum[i][nplot:]),
+               feigenbaum[i][nplot:], s=0.01, c='k')
+

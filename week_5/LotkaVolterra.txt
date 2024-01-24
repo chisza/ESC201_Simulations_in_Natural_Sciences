@@ -1,0 +1,61 @@
+
+
+def odeSolver(t0, y0, dfFunc, h, nSteps, solverStepFunc):
+    """This is a general ODE solver that takes the
+    derivative df/dt (dfFunc) and the algorithm for one time
+    step (solverStepFunc) as function arguments.
+	t0 = Initial time
+	y0 = Initial function values (array)
+	nSteps = Total number of integration steps
+	solverStepFunc = Euler Method, Midpoint RK or RK4
+    """
+	yn = y0
+    tn = t0
+    tlist = [t0]
+    ylist = [y0]
+	for n in range(nSteps):
+        yn1 = solverStepFunc(tn, yn, h, dfFunc)
+		tn1 = tn + h
+		tlist.append(tn1)
+        ylist.append(yn1)
+		tn = tn1
+		yn = yn1
+	return (np.array(tlist), np.array(ylist))
+	
+def eulerStep(tn, yn, h, dfdt):
+    yn1 = yn + h * dfdt(tn, yn)
+    return yn1
+	
+def MidPointRK2Step(tn, yn, h, dfdt):
+
+def RK4Step(tn, yn, h, dfdt):
+
+	
+def LotkaVolterra(t, y):
+    """Implements the Lotka Volterra System dm/dt and dfox/dt
+    where y=(m,fox), dy/dt=(dm/dt, dfox/dt)"""
+	dmdt = ...
+	dfoxdt = ... 
+	return np.array([dmdt, dfoxdt])
+	
+h = 0.1
+nSteps = 600
+t0 = 0
+y0 = np.array([100, 15])
+t, y = odeSolver(t0, y0, LotkaVolterra, h, nSteps, eulerStep)
+	
+plot(t, y[:,0], ..) # population versus time
+ ... # phase plot
+
+t, y = odeSolver(t0, y0, LotkaVolterra, h, nSteps, MidPointRK2Step)
+	
+plot(t, y[:,0], ..)
+ ... # phase plot
+
+t, y = odeSolver(t0, y0, LotkaVolterra, h, nSteps, RK4Step)
+	
+plot(t, y[:,0], ..)
+ ... # phase plot
+
+	
+	

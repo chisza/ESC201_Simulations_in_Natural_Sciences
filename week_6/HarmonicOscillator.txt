@@ -1,0 +1,53 @@
+
+def odeHO(p,q):
+    """Harmonic oscillator"""
+    dpdt = -q
+    dqdt = p
+    return (dpdt, dqdt)
+
+def odePendulum(p,q):
+	dpdt = - epsilon*sin(q)
+	...
+
+def leapFrog(p0, q0, h, odeSystem):
+	q12 = q0 + 0.5*h*p0         # first drift
+	dp, dq = odeSystem(p0, q12)
+ 	p1 = p0 + h*dp              # kick
+	q1 = q12 + 0.5*h*p1         # second drift
+    	return (p1, q1)
+
+def euler(p, q, h, odeSystem):
+    dp, dq = odeSystem(p, q)
+    p += h*dp
+    q += h*dq
+    return (p, q)
+
+def rk2MidPoint(p, q, h, odeSystem):
+
+
+def rk4(p, q, h, odeSystem):
+
+# optional for function animation
+def update(frame):
+    global p,q
+    #p, q = leapFrog(p, q, h, odeHO)
+    p, q = euler(p, q, h, odeHO)
+    xdata.append(q)
+    ydata.append(p)
+    ln.set_data(xdata, ydata)
+    return ln,
+
+Fig1, axs = plt.subplots(2,2)
+
+#initial conditions
+HO: p=0, q=1, q=2, q=3
+
+Pendulum: q is angle, range is [-pi,pi]
+For circulation you need an additional momentum p /= 0
+
+axs[0,0]: phase plot HO using leap frog
+axs[0,1]: phase plot HO using euler or rk2 or rk4
+axs[1,0]: phase plot pendulum using leap frog
+axs[1,1]: phase plot pendulum using euler or rk2 or rk4
+
+
